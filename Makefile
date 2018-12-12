@@ -5,15 +5,15 @@ SRC=src
 
 all: server.out client.out
 server.out: server.o
-	$(CC) $(CFLAGS) $(LIBS) -o server.out server.o
+	gcc -O3 -pthread -o server.out server.o
 client.out: client.o string.o
-	$(CC) $(CFLAGS) $(LIBS) -o client.out client.o string.o
-server.o: $(SRC)/server.c
-	$(CC) $(CFLAGS) -c $(SRC)/server.c
-string.o: $(SRC)/string.c
-	$(CC) $(CFLAGS) -c $(SRC)/string.c
-client.o: $(SRC)/client.c
-	$(CC) $(CFLAGS) -c $(SRC)/client.c
+	gcc -O3 -pthread -o client.out client.o string.o
+server.o: server.c
+	gcc -O3 -c server.c
+string.o: string.c
+	gcc -O3 -c string.c
+client.o: client.c
+	gcc -O3 -c client.c
 
 .PHONY: clean
 clean:
